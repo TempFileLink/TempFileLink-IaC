@@ -1,7 +1,7 @@
 module "db" {
   source = "terraform-aws-modules/rds/aws"
 
-  identifier          = var.rds.database_name
+  identifier          = var.rds.database_identifier
   db_name             = var.rds.database_name
   engine              = "postgres"
   engine_version      = "16.3"

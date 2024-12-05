@@ -36,14 +36,16 @@ variable "ec2" {
 variable "rds" {
   description = "RDS configuration"
   type = object({
-    database_name = string
-    db_user       = string
-    db_pass       = string
+    database_identifier = string
+    database_name       = string
+    db_user             = string
+    db_pass             = string
   })
   default = {
-    database_name = "my-database"
-    db_user       = "postgres"
-    db_pass       = "postgres"
+    database_identifier = "my-database"
+    database_name       = "production"
+    db_user             = "postgres"
+    db_pass             = "postgres"
   }
   sensitive = true
 }
