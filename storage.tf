@@ -1,12 +1,13 @@
 module "db" {
   source = "terraform-aws-modules/rds/aws"
 
-  identifier        = var.rds.database_name
-  engine            = "postgres"
-  engine_version    = "16.3"
-  family            = "postgres16"
-  instance_class    = "db.t4g.micro"
-  allocated_storage = 20
+  identifier          = var.rds.database_name
+  engine              = "postgres"
+  engine_version      = "16.3"
+  family              = "postgres16"
+  instance_class      = "db.t4g.micro"
+  allocated_storage   = 20
+  publicly_accessible = true
 
   username = var.rds.db_user
   password = var.rds.db_pass
