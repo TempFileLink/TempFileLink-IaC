@@ -9,8 +9,9 @@ module "db" {
   allocated_storage   = 20
   publicly_accessible = true
 
-  username = var.rds.db_user
-  password = var.rds.db_pass
+  username                    = var.rds.db_user
+  password                    = var.rds.db_pass
+  manage_master_user_password = false
 
   vpc_security_group_ids = [module.rds_sg.security_group_id]
   db_subnet_group_name   = module.vpc.database_subnet_group_name
