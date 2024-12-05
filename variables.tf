@@ -129,3 +129,10 @@ variable "ecs_service_name" {
   type        = string
   default     = "my-ecs-service"
 }
+
+# Certificate Manager
+variable "acm_certificate_domain_name" {
+  description = "Domain name for ACM certificate"
+  type        = string
+  default     = null
+}

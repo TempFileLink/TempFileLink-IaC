@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env: 
+  DOMAIN_NAME: ${{vars.DOMAIN_NAME}}
+
 jobs:
   terraform:
     name: "Terraform"
@@ -20,6 +23,7 @@ jobs:
         run: |
           echo "TF_VAR_credentials={ access_key = \"${{secrets.AWS_ACCESS_KEY}}\", secret_key = \"${{secrets.AWS_SECRET_KEY}}\" }" >> $GITHUB_ENV
           echo "TF_VAR_rds={ database_identifier = \"${{secrets.DB_ID}}\", database_name = \"${{secrets.DB_NAME}}\", db_user = \"${{secrets.DB_USER}}\", db_pass = \"${{secrets.DB_PASS}}\" }" >> $GITHUB_ENV
+          echo "TF_VAR_acm_certificate_domain_name = \"${{env.DOMAIN_NAME}}\"" >> $GITHUB_ENV
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
