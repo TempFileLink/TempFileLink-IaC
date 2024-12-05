@@ -88,5 +88,9 @@ resource "aws_ecs_service" "ecs_service" {
     container_port   = 80
   }
 
+  lifecycle {
+    ignore_changes = [task_definition]
+  }
+
   depends_on = [aws_autoscaling_group.ecs_asg]
 }
