@@ -74,6 +74,35 @@ module "rds_sg" {
     }
   ]
 
+  computed_ingress_with_source_security_group_id = [
+    {
+      rule                     = "postgresql-tcp"
+      source_security_group_id = module.lambda_sg.security_group_id
+    }
+  ]
+  number_of_computed_ingress_with_source_security_group_id = 1
+
+  egress_rules = ["all-all"]
+
+  tags = local.common_tags
+}
+
+module "lambda_sg" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  name        = "lambda-sg"
+  description = "Security group for Lambda function"
+  vpc_id      = module.vpc.vpc_id
+
+  # Allow outbound ke RDS
+  computed_egress_with_source_security_group_id = [
+    {
+      rule                     = "postgresql-tcp"
+      source_security_group_id = module.rds_sg.security_group_id
+    }
+  ]
+  number_of_computed_egress_with_source_security_group_id = 1
+
   egress_rules = ["all-all"]
 
   tags = local.common_tags

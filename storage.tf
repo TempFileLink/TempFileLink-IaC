@@ -26,6 +26,21 @@ module "s3_bucket" {
 
   bucket = var.bucket_name
 
+  lifecycle_rule = [
+    {
+      id      = "cleanup_rule"
+      enabled = true
+
+      expiration = {
+        days = 1
+      }
+
+      tags = {
+        expiry = "true"
+      }
+    }
+  ]
+
   tags = local.common_tags
 }
 
