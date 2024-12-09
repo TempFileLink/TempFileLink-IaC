@@ -133,7 +133,7 @@ resource "aws_iam_role_policy" "lambda_s3_policy" {
       {
         Effect = "Allow"
         Action = [
-          "s3:*"  # Berikan akses penuh untuk S3
+          "s3:*" # Berikan akses penuh untuk S3
         ]
         Resource = [
           module.s3_bucket.s3_bucket_arn,

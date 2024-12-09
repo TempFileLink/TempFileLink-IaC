@@ -2,17 +2,17 @@ resource "aws_lambda_function" "s3_cleanup" {
   filename         = "function.zip"
   source_code_hash = filebase64sha256("function.zip")
   function_name    = "s3-cleanup-function"
-  role            = aws_iam_role.lambda_role.arn
-  handler         = "bootstrap" 
-  runtime         = "provided.al2"  
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "bootstrap"
+  runtime          = "provided.al2"
 
   environment {
     variables = {
-      DB_HOST     = module.db.db_instance_address
-      DB_PORT     = "5432"
-      DB_USER     = var.rds.db_user
-      DB_PASS     = var.rds.db_pass
-      DB_NAME     = var.rds.database_name
+      DB_HOST         = module.db.db_instance_address
+      DB_PORT         = "5432"
+      DB_USER         = var.rds.db_user
+      DB_PASS         = var.rds.db_pass
+      DB_NAME         = var.rds.database_name
       AWS_BUCKET_NAME = module.s3_bucket.s3_bucket_id
     }
   }
@@ -28,7 +28,7 @@ resource "aws_lambda_function" "s3_cleanup" {
 resource "aws_lambda_permission" "allow_bucket" {
   statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.s3_cleanup.function_name 
+  function_name = aws_lambda_function.s3_cleanup.function_name
   principal     = "s3.amazonaws.com"
   source_arn    = module.s3_bucket.s3_bucket_arn
 }
