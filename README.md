@@ -1,6 +1,6 @@
 # Architecture
 
-![TempFileLink Architecture](https://github.com/user-attachments/assets/df4a6145-1902-439e-bbe4-3dc7b655d23f)
+![TempFileLink Architecture](https://github.com/user-attachments/assets/ff5d94a8-ceed-4d7e-9c03-c49b5681ae8c)
 
 We implement architecture that:
 
